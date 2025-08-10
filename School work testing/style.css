@@ -1,0 +1,212 @@
+/* Reset & Base */
+/* Nulstiller bare margin og padding på alle elementer sætter box-sizing til border box for nemmere sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling, font, farve, baggrund, position og minimum højde */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    background: #000;
+    position: relative;
+    overflow-x: hidden;  /* Forhindrer horisontal scroll */
+    min-height: 100vh;
+}
+
+/* Portfolite stil glød baggrund  den kraftige grålige glow */
+/* Første glow lag større og lidt mere tydelig */
+body::before {
+    content: "";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 1400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, transparent 70%);
+    transform: translate(-50%, -50%) scaleX(3);
+    filter: blur(120px);
+    animation: flameMove 10s ease-in-out infinite alternate; /* Langsom animation */
+    z-index: 0; /* Ligger bag alt andet */
+}
+
+/* Andet glow lag lidt mindre tydelig, bevæger sig modsat retning */
+body::after {
+    content: "";
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    width: 1400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
+    transform: translate(-50%, -50%) scaleX(3);
+    filter: blur(140px);
+    animation: flameMove 12s ease-in-out infinite alternate-reverse; /* Modsat bevægelse */
+    z-index: 0;
+}
+
+/* Animation der får glow effekten til at bevæge sig langsomt som en flamme eller sådan noget */
+@keyframes flameMove {
+    0% {
+        transform: translate(-50%, -50%) scaleX(3) translateX(-100px) translateY(-40px);
+    }
+    50% {
+        transform: translate(-50%, -50%) scaleX(3) translateX(100px) translateY(40px);
+    }
+    100% {
+        transform: translate(-50%, -50%) scaleX(3) translateX(-100px) translateY(-40px);
+    }
+}
+
+/* Navigation */
+/* Gør nav til en fleks container, placerer indhold mod venstre med padding */
+nav {
+    display: flex;
+    justify-content: flex-start;
+    padding: 1.5rem 3rem;
+    position: relative;
+    z-index: 1; /* Over glow baggrund */
+}
+
+/* Navigation tekst styling - større tekst, grå farve */
+.nav-left {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #aaa;
+}
+
+/* Hero Section midterste tekstfelt på siden */
+/* Centrerer tekst og giver meget padding */
+.hero {
+    text-align: center;
+    padding: 10rem 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Hero overskrift stor og fed */
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* Hero undertekst med lidt lavere opacitet */
+.hero p {
+    font-size: 1.2rem;
+    opacity: 0.7;
+}
+
+/* Footer fast placeret i nederste venstre hjørne */
+/* Lille og lidt transparent tekst */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.5);
+    z-index: 1;
+}
+
+/* Bottom Sections Layout indeholder CV og højre kolonne */
+/* Flexbox med plads imellem og lidt padding */
+.bottom-sections {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 4rem 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Venstre kolonne CV sektion */
+/* Let transparent baggrund med blur og skygge for dybde */
+/* Bredde sat til 48% af container */
+.cv-section {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 2rem;
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
+    width: 48%;
+}
+
+/* Overskrift styling i CV sektionen */
+.cv-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #aaa;
+}
+
+/* CV billede styling max bredde centreret og med hover effekt */
+.cv-section img {
+    max-width: 500px;
+    height: auto;
+    display: block;
+    margin: 1rem auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+/* Hover effekt på CV billedet zoom lidt ind */
+.cv-section img:hover {
+    transform: scale(1.05);
+}
+
+/* Højre kolonne indeholder About Me og Contact stacked lodret */
+/* Flex container med lodret retning og mellemrum */
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 48%;
+}
+
+/* Styling til About me og Contact sektioner */
+/* Samme baggrund paddin, blur og skygge som CV */
+.about-section,
+.contact-section {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 2rem;
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
+    color: #ddd;
+}
+
+/* Overskrift styling i About me og Contact sektioner */
+.about-section h2,
+.contact-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #aaa;
+}
+
+/* Links i Contact sektionen grå farve og uden understregning */
+.contact-section a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+/* Links hover effekt - får understregning */
+.contact-section a:hover {
+    text-decoration: underline;
+}
+
+/* Responsivt design */
+/* Når skærmen er mindre end 600px, stackes kolonner lodret */
+/* CV og højre kolonne fylder 100% bredde */
+@media (max-width: 600px) {
+    .bottom-sections {
+        flex-direction: column;
+    }
+    .cv-section,
+    .right-column {
+        width: 100%;
+    }
+}
